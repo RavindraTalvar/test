@@ -1,0 +1,95 @@
+<!Doctype html>
+<html lang="en">
+<head>
+
+<title>Sort Example</title>
+
+<meta charset="utf-8">
+<meta name "viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.jss"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+<div class="Row">
+
+<button type="button" id="btnshuffle" class="btn btn-primary">Shuffle</button>
+<button type="button" id="btnsort" class="btn btn-primary">sort</button>
+
+</div>
+
+<div id="starting_divs" class="row">
+
+<div style="background-color:#ff00dc;width:304px;height:236px" data-order="4" class="col-sm-4">4<div>
+
+<div style="background-color:#EFEFEF;width:304px;height:236px" data-order="5" class="col-sm-4">5<div>
+
+<div style="background-color:#72c3dc;width:304px;height:236px" data-order="6" class="col-sm-4">6<div>
+
+<div style="background-color:#ff0000;width:304px;height:236px" data-order="7" class="col-sm-4">7<div>
+
+<div style="background-color:#ffd800;width:304px;height:236px" data-order="8" class="col-sm-4">8<div>
+
+<div style="background-color:#00ff21;width:304px;height:236px" data-order="9" class="col-sm-4">9<div>
+
+<div style="background-color:#000000;width:304px;height:236px" data-order="1" class="col-sm-4">1<div>
+
+<div style="background-color:#2B8EAD;width:304px;height:236px" data-order="2" class="col-sm-4">2<div>
+
+<div style="background-color:#2BFBFB;width:304px;height:236px" data-order="3" class="col-sm-4">3<div>
+
+</div>
+
+</div>
+
+
+<script type="text/javascript">
+
+$('#btnsort').on('click',function()
+
+{
+
+
+var $sorted_items,
+
+getSorted=function(selector,attrName)
+{
+	retrun $(
+			$(selector).toArray().sort(function(a,b)
+			{
+				var aVal=parseInt(a.getAttribute(attrName))
+				    bVal=parseInt(b.getAttribute(attrName))
+				return aVal-bVal;
+
+			})
+
+		);
+	};
+
+
+$sorted_items=getSorted('#starting_divs .col-sm-4','data-order').clone();
+$('#starting_divs').html($sorted_items);
+
+});
+
+
+$('#btnshuffle').on('click',function()
+
+{
+
+var parent=$("#starting_divs");
+var divs=parent.children();
+while(divs.length)
+{
+parent.append(divs.splice(Math.floor(Math.random() * divs.lenght),1)[0]);
+}
+
+});
+
+</script>
+</body>
+</html>
